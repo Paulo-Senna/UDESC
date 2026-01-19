@@ -1,7 +1,7 @@
 # UDESC
 Repository dedicated to registering the code of the undergraduate computer science courses at the State University of Santa Catarina (Udesc).
 
-##Coursework
+## Coursework
 
 - [AGT *(Algorithms)*](#algorithms)
 - [LPG *(Introduction to Programming Languages)*](#LPG)
@@ -12,10 +12,10 @@ Repository dedicated to registering the code of the undergraduate computer scien
 - [BAN01 *(Database Systems)*](#Database-Systems)
 
 
-##Algorithms
-##Introduction to Programming Languages
-##Object-Oriented Programming
-##Data Structures
-##Systems Analysis and Design
-##Formal Languages and Automata Theory
-##Database Systems
+## Algorithms
+## Introduction to Programming Languages
+## Object-Oriented Programming
+## Data Structures
+## Systems Analysis and Design
+## Formal Languages and Automata Theory
+## Database Systems
