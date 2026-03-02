@@ -34,45 +34,27 @@ Repository dedicated to registering the code of the undergraduate computer scien
 <br>
 
 ## Data Structures II
->
-- [*Arvores Binarias*](#-arvoresbinarias)
-- [*AVL*](#-avl)
-- [*Rubro-Negra*](#-rubronegra)
-- [*B*](#-b)
-- [*Trie*](#-trie)
-- [*Hash*](#-hash)
-
----
-<br>
 <br>
 
-### Arvores Binarias (Int)
----
-<br>
-
-### AVL
----
-<br>
-
-### Rubro-Negra
----
-<br>
-
-### B
----
-<br>
-
-### Arvores Trie
----
-<br>
-
-### Tabelas Hash
----
+- [*Arvores Binarias*]
+- [*AVL*]
+- [*Rubro-Negra*]
+- [*B*]
+- [*Trie*]
+- [*Hash*]
 
 <br>
 <br>
 
-## Analise Numerica
+## Análise Numérica
+<br>
+
+
+
+- seispace (pesquisa)
+- maple (computação algebrica)
+
+
 
 
 
