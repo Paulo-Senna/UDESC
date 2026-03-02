@@ -12,7 +12,7 @@ Repository dedicated to registering the code of the undergraduate computer scien
 - [AMS *(Systems Analysis and Design)*](#Systems-Analysis-and-Design)
 - [LFA *(Formal Languages and Automata Theory)*](Formal-Languages-Automata-Theory)
 - [BAN01 *(Database Systems)*](#Database-Systems)
-- [EDA02 *(Data Structures II)*](#-data-structuresii)
+- [EDA02 *(Data Structures II)*](#-datastructuresii)
 - [ANN *(Analise Numerica)*](#-analisenumerica)
 
 <br>
@@ -45,21 +45,27 @@ Repository dedicated to registering the code of the undergraduate computer scien
 ---
 <br>
 <br>
+
 ### Arvores Binarias (Int)
 ---
 <br>
+
 ### AVL
 ---
 <br>
+
 ### Rubro-Negra
 ---
 <br>
+
 ### B
 ---
 <br>
+
 ### Arvores Trie
 ---
 <br>
+
 ### Tabelas Hash
 ---
 
