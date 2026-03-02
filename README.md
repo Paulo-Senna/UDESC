@@ -1,6 +1,8 @@
 # UDESC
 Repository dedicated to registering the code of the undergraduate computer science courses at the State University of Santa Catarina (Udesc).
 
+<br>
+
 ## Coursework
 
 - [AGT *(Algorithms)*](#algorithms)
@@ -10,7 +12,10 @@ Repository dedicated to registering the code of the undergraduate computer scien
 - [AMS *(Systems Analysis and Design)*](#Systems-Analysis-and-Design)
 - [LFA *(Formal Languages and Automata Theory)*](Formal-Languages-Automata-Theory)
 - [BAN01 *(Database Systems)*](#Database-Systems)
+- [EDA02 *(Data Structures II)*](#-data-structuresii)
 
+<br>
+<br>
 
 ## Algorithms
 ## Introduction to Programming Languages
@@ -18,4 +23,15 @@ Repository dedicated to registering the code of the undergraduate computer scien
 ## Data Structures
 ## Systems Analysis and Design
 ## Formal Languages and Automata Theory
+
+<br>
+<br>
+
 ## Database Systems
+
+<br>
+<br>
+
+## Data Structures II
+
+
