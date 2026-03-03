@@ -1,8 +1,11 @@
 # UDESC
 
 Repository dedicated to storing code developed for the undergraduate Computer Science courses at the State University of Santa Catarina (UDESC).
+
 <br>
+
 Some courses are not included in this repository because they do not involve coding, such as mathematics-related subjects.
+
 <br>
 
 ## Coursework
