@@ -1,0 +1,20 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLExection;
+
+public class Conexao {
+    private static Connection con;
+    private Conexao(){
+    }
+
+    public static Connection getConexao() throw ClassFoundException, SQLExection{
+
+        if(conexao == null){
+
+        Class.forName("org.postgresql.Driver");
+        String url = "jbc:postgresql://localhost:5432/petshop";
+        con = DriverManager.getConnection(url, "postgre", "udesc");
+        }
+        return  conexao;
+    }
+}
