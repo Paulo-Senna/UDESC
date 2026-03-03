@@ -1,0 +1,96 @@
+@startuml UML
+package dados {
+    abstract class Gastos {
+        - nome : String
+        - data : String
+        - desc : String
+        - valor : double
+
+        + getNome() : String
+        + setNome(nome : String) : void
+        + getData() : String
+        + setData(data : String) : void
+        + getDesc() : String
+        + setDesc(desc : String) : void
+        + getValor() : double
+        + setValor(valor : double) : void
+    }
+
+    class Comida {
+        + toString() : String
+    }
+
+    class Educacao {
+        + toString() : String
+    }
+
+    class Lazer {
+        + toString() : String
+    }
+
+    class Saude {
+        + toString() : String
+    }
+
+    class Transporte {
+        + toString() : String
+    }
+
+    class Outros {
+        + toString() : String
+    }
+
+    class Usuario {
+        - nome : String
+        - senha : String
+        - gastos : ArrayList<Gastos>
+
+        + getNome() : String
+        + setNome(nome : String) : void
+        + getSenha() : String
+        + setSenha(senha : String) : void
+        + getGastos() : ArrayList<Gastos>
+        + adicionarGasto(g : Gastos) : void
+        + toString() : String
+    }
+
+    Gastos <|-- Comida
+    Gastos <|-- Educacao
+    Gastos <|-- Lazer
+    Gastos <|-- Saude
+    Gastos <|-- Transporte
+    Gastos <|-- Outros
+}
+
+package negocio {
+    class Main {
+        - s : Scanner
+        + menu() : void
+        + main(args : String[]) : void
+    }
+
+    class Sistema {
+        - s : Scanner
+        - usuarios : ArrayList<Usuario>
+        - usuarioLogado : Usuario
+
+        + cadastrarUsuario() : void
+        + mostrarUsuarios() : void
+        + adicionarGasto() : void
+        + buscarUsuarios(nome : String) : Usuario
+        + mostrarGastos() : void
+        + fazerLogin() : void
+        + logout() : void
+        + mostrarGastosPorMes() : void
+        + alterarDado() : void
+    }
+
+    Main --> Sistema : usa
+    Sistema --> Usuario : manipula
+    Sistema --> Gastos : manipula
+}
+
+package apresentacao {
+    ' (vazia)
+}
+@enduml

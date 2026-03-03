@@ -1,0 +1,119 @@
+@startuml UML_Com_Grafico_Customizado
+!theme vibrant
+
+skinparam linetype ortho
+skinparam packageStyle rectangle
+hide empty members
+
+title Diagrama de Classes - Sistema de Finanças 
+
+package "dados" {
+    enum TipoGasto {
+        COMIDA, EDUCACAO, LAZER, SAUDE, TRANSPORTE, OUTROS
+    }
+
+    class Gastos {
+        - nome : String
+        - data : String
+        - desc : String
+        - valor : double
+        - tipo : TipoGasto
+        + getNome() : String
+        + setNome(nome : String) : void
+        + getData() : String
+        + setData(data : String) : void
+        + getDesc() : String
+        + setDesc(desc : String) : void
+        + getValor() : double
+        + setValor(valor : double) : void
+        + getTipo() : TipoGasto
+        + setTipo(tipo : TipoGasto) : void
+    }
+
+    class Usuario {
+        - id : int
+        - nome : String
+        - senha : String
+        + getId() : int
+        + setId(id : int) : void
+        + getNome() : String
+        + setNome(nome : String) : void
+        + getSenha() : String
+        + setSenha(senha : String) : void
+    }
+
+    Usuario "1" *-- "0..*" Gastos : contém
+    Gastos "1" -- "1" TipoGasto : é do tipo
+}
+
+package "persistencia" {
+    class Conexao {
+        + getConnection() : Connection
+    }
+
+    class UsuarioDAO {
+        + inserir(u : Usuario) : void
+        + buscarPorNome(nome : String) : Usuario
+    }
+
+    class GastosDAO {
+        + inserir(usuarioId : int, g : Gastos) : void
+        + buscarPorUsuario(usuarioId : int) : List<Gastos>
+        + atualizar(g : Gastos) : void
+        + remover(gastoId : int) : boolean
+        + buscarPorNome(usuarioId : int, nome : String) : List<Gastos>
+    }
+}
+
+package "negocio" {
+    class Sistema {
+        {static} - usuarioLogado : Usuario
+        {static} + cadastrarUsuario(nome : String, senha : String) : String
+        {static} + fazerLogin(nome : String, senha : String) : String
+        {static} + logout() : String
+        {static} + isUsuarioLogado() : boolean
+        {static} + getUsuarioLogado() : Usuario
+        {static} + adicionarGasto(nome : String, data : String, desc : String, valor : double, tipo : TipoGasto) : String
+        {static} + getGastosUsuarioLogado() : List<Gastos>
+        {static} + alterarGasto(gastoParaAlterar : Gastos, novoNome : String, novaData : String, novaDesc : String, novoValorStr : String, novoTipo : TipoGasto) : String
+        {static} + apagarGasto(gastoParaRemover : Gastos) : boolean
+        {static} + buscarGastosPorNome(nome : String) : List<Gastos>
+        {static} + getGastosPorMes() : Map<String, List<Gastos>>
+        {static} + getSomaGastosPorCategoria() : Map<TipoGasto, Double>
+        {static} + getSomaGastosPorMes() : Map<String, Double>
+    }
+}
+
+package "apresentacao" {
+    class Main
+    class TelaLogin
+    class TelaPrincipal
+    class TelaAdicionarGasto
+    class TelaVisualizarGastos
+    class TelaAlterarGastos
+    class TelaGraficos
+    class GraficoBarrasPanel
+}
+
+package "javax.swing" <<Library>> {
+    class JPanel
+}
+
+apresentacao ..> negocio.Sistema : <<usa>>
+negocio.Sistema ..> dados.Usuario
+negocio.Sistema ..> dados.Gastos
+negocio.Sistema ..> persistencia.UsuarioDAO
+negocio.Sistema ..> persistencia.GastosDAO
+
+Main ..> TelaLogin : <<cria>>
+TelaLogin ..> TelaPrincipal : <<cria>>
+TelaPrincipal ..> TelaAdicionarGasto : <<cria>>
+TelaPrincipal ..> TelaVisualizarGastos : <<cria>>
+TelaPrincipal ..> TelaAlterarGastos : <<cria>>
+TelaPrincipal ..> TelaGraficos : <<cria>>
+
+TelaGraficos "1" *-- "1" GraficoBarrasPanel : contém
+GraficoBarrasPanel --|> JPanel
+
+@enduml
+

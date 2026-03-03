@@ -1,0 +1,17 @@
+CREATE TABLE usuario (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL
+);
+
+CREATE TYPE tipo_gasto AS ENUM ('ALIMENTACAO', 'TRANSPORTE', 'LAZER', 'SAUDE', 'OUTROS');
+
+CREATE TABLE gasto (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER REFERENCES usuario(id) ON DELETE CASCADE,
+    nome VARCHAR(100) NOT NULL,
+    data VARCHAR(10),
+    descricao TEXT,
+    valor NUMERIC(10,2),
+    tipo tipo_gasto
+);
