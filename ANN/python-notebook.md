@@ -22,8 +22,9 @@ print("--- Método da Bisseção ---")
 print(f"Raiz encontrada: {resultado_bisect.root}")
 print(f"Convergiu com sucesso? {resultado_bisect.converged}")
 print(f"Número de iterações: {resultado_bisect.iterations}")
-
 ```
+
+## Metodo de Newton-Raphton
 
 * 2. Muitos algoritmos de renderização de gráficos precisam calcular raízes 
 quadradas rapidamente. O cálculo da raiz quadrada de 5 pode ser formulado como a 
