@@ -11,30 +11,54 @@ The bisection method is a root-finding algorithm that applies to any continuous 
 
 ---
 
+<br>
+
 ### Analysis
 * **Advantages:** Always convergent and can be used as a starter for more accurate methods. Since the intervals containing the root are halved at each iteration, the error in the solution is predictable.
 * **Disadvantages:** Linear convergence (slow), as each step reduces the interval by half. Does not work for determining multiple roots where the function does not cross the x-axis.
 
 ---
 
-## 🔍 Finding the Roots
+<br>
+
+## 🔍 Graph it!
 > The first approach to finding the real roots of an algebraic equation is to graph it.
 
-* **Matplotlib:** Used to graph representations.
+* **Matplotlib:** Used to graph representations (you dont need to have this library imported in your code, but need to install in your pc)
+    ```windows
+    python -m pip install matplot 
+    ```
+    
+    <br>
+    
+    ```linux
+    pip install matplot
+    ```
+
+    <br>
+    
 * **SymPy:** Used to simplify algebraic symbols.
+  ```windows
+  python -m pip install symply
+  ```
+
+  <br>
+
+  ```linux
+  pip install symply
+  ```
+
+<br>
 
 ### Graphical Analysis: $\cos(x) + x + 1 = 0$
 
 Let us determine the approximate position of the real roots graphically:
 
 ```python
-from matplotlib.pyplot import *
 from sympy import *
 
 x = symbols('x')
 f = Lambda(x, cos(x) + x + 1)
-
-# Plotting the function
 plot(f(x), (x, -6, 6))
 ```
 With this graph, we can see that the equation has only one real root.
@@ -49,14 +73,15 @@ Now, to determine the root with great accuracy and precision:
 ```Python
 from matplotlib.pyplot import *
 from sympy import *
-init_printing()
 
-x = symbols('x')
-f = Lambda(x, x**4 - sin(x) - 1)
+x = symbols('x') #define x como uma variavel matematica e não de programação
+f = Lambda(x, x**4 - sin(x) - 1) #Lambda é uma função que cria a função definindo a variavel isolada e sua formula
 
-plot(f(x), (x, -1.5, 1.5))
+plot(f(x), (x, -1.5, 1.5)) #x define o eixo horizontal
 
 ```
+
+<br>
 
 ### The Negative Root (Range $[-1, 0]$):
 
@@ -71,6 +96,8 @@ for n in range(1, 30):
         a = m1
 print(f"Negative root: {m1}")
 ```
+
+<br>
 
 ### The Positive Root (Range $[1, 1.5]$):
 
@@ -88,12 +115,13 @@ print(f"Positive root: {m2}")
 
 ---
 
+<br>
+
 ## 📦 Encapsulating
 We can encapsulate the logic into a reusable function that takes the function $f$, the extremes $A$ and $B$ of the initial interval, and the number of iterations $N$.
 
 ```Python
-def bisect1(f, A, B, N):
-    a, b = A, B
+def bisect1(f, a, b, n):
     if f(a) * f(b) >= 0:
         print('The method failed: f(a) and f(b) must have opposite signs.')
         return None
@@ -104,21 +132,26 @@ def bisect1(f, A, B, N):
         else:
             a = m
     return (a + b) / 2
-
-# Usage:
-r1 = bisect1(f, -1, 0, 20)
-r2 = bisect1(f, 0, 2, 20)
 ```
+
+<br>
 
 ### Advanced Procedure (with Tolerance $\epsilon$)
 A procedure using the mximum number of iterations $Nmax$ and the tolerance $\epsilon$.
+
+<br>
+
+You can use this template to another exercises
+
+* **$Nmax$:** Security block of iterations.
+* **$\epsilon$:** Maximum margin of error.
 
 ```Python
 def bisect2(f, A, B, Nmax, epsilon):
     a, b = A, B
     erro = 1
     n = 0
-    while erro > epsilon and n < Nmax:
+    while erro > epsilon and n < Nmax: ##identifica quando parar, diferente da bisect1
         if f(a) * f(b) >= 0:
             print('The method failed')
             return None
@@ -134,6 +167,8 @@ def bisect2(f, A, B, Nmax, epsilon):
 # Usage example:
 r1_res, n1 = bisect2(f, -1, 0, 40, 10**(-10))
 ```
+
+<br>
 
 ## 📈 Accuracy vs. Number of Iterations
 The number of iterations $n$ required to reach a specific tolerance can be calculated mathematically.
@@ -155,6 +190,8 @@ def bisect3(f, A, B, epsilon):
             a = m
     return (a + b) / 2, n
 ```
+
+<br>
 
 ## 📝 Exercises
 
