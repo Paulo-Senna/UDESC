@@ -30,7 +30,6 @@ Let us determine the approximate position of the real roots graphically:
 ```python
 from matplotlib.pyplot import *
 from sympy import *
-init_printing()
 
 x = symbols('x')
 f = Lambda(x, cos(x) + x + 1)
