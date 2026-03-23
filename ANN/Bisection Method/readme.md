@@ -1,198 +1,167 @@
 # Bisection Method
-The bisection method consists in:
 
-1. Chose an initial interval *[a, b]*, such that f(a)f(b)<0.
-2. The midpoint of the interval m = (a + b)/2.
-3. Determine if f(m) > 0 or f(m) < 0.
-4. Choose the new interval to be [a, m] if f(a)f(m) < 0. Otherwise choose [m, b].
-5. Repeat the process until the gap size is smaller than a pre-se tolerance ϵ or a maximum number of iterations N.
+The bisection method is a root-finding algorithm that applies to any continuous function for which one knows two values with opposite signs.
 
-<br>
-
-* **Advantages:** Always convergent and can be used as a starter for more accurate methods. Since the intervals containing the roo are halved at each iteration, we can predict the error in the solution.
-* **Disadvantages:** Linear convergence (slow), each step reduced by half. Does not work for determining multiple roots
+### Algorithm Steps:
+1. Choose an initial interval $[a, b]$, such that $f(a)f(b) < 0$.
+2. Calculate the midpoint of the interval: $m = \frac{a + b}{2}$.
+3. Determine if $f(m) > 0$ or $f(m) < 0$.
+4. Choose the new interval to be $[a, m]$ if $f(a)f(m) < 0$. Otherwise, choose $[m, b]$.
+5. Repeat the process until the gap size is smaller than a pre-set tolerance $\epsilon$ or a maximum number of iterations $N$ is reached.
 
 ---
 
-<br>
+### Analysis
+* **Advantages:** Always convergent and can be used as a starter for more accurate methods. Since the intervals containing the root are halved at each iteration, the error in the solution is predictable.
+* **Disadvantages:** Linear convergence (slow), as each step reduces the interval by half. Does not work for determining multiple roots where the function does not cross the x-axis.
 
-## Finding the roots
+---
+
+## 🔍 Finding the Roots
 > The first approach to finding the real roots of an algebraic equation is to graph it.
 
-<br>
+* **Matplotlib:** Used to graph representations.
+* **SymPy:** Used to simplify algebraic symbols.
 
-* **matplot:** used to graph representations
-* **sympy:** used to simplify algebric symbols
+### Graphical Analysis: $\cos(x) + x + 1 = 0$
 
+Let us determine the approximate position of the real roots graphically:
 
-
----
-
-<br>
-
-Let us determine the approximate position of the real roots of cos(x) + x + 1 = 0 (if any) graphically:
-
-```
+```python
 from matplotlib.pyplot import *
 from sympy import *
 init_printing()
 
 x = symbols('x')
 f = Lambda(x, cos(x) + x + 1)
-f(x)
 
+# Plotting the function
 plot(f(x), (x, -6, 6))
 ```
-
-<br>
-
-With this graph we can see that the equation has only one real root.
+With this graph, we can see that the equation has only one real root.
 
 ---
 
 <br>
 
-Now, to determinate the root with great accuracy and precision of: **x^4 - sin(x) - 1 = 0**
+### High Accuracy Determination: $x^4 - \sin(x) - 1 = 0$
+Now, to determine the root with great accuracy and precision:
 
-```
+```Python
 from matplotlib.pyplot import *
-from sympy import*
+from sympy import *
 init_printing()
 
 x = symbols('x')
-
-f = Lambda(x, x**4-sin(x)-1)
-f(x)
+f = Lambda(x, x**4 - sin(x) - 1)
 
 plot(f(x), (x, -1.5, 1.5))
+
 ```
 
-<br>
+### The Negative Root (Range $[-1, 0]$):
 
-The negative root(range [-1, 0]):
-```
+```Python
 a = -1
 b = 0
-for n in range(1, 30)
-  m1(a+b)/2
-  if f(m1)*f(a)<0:
-    b=m1
-  else
-    a=m1
-print(m1)
+for n in range(1, 30):
+    m1 = (a + b) / 2
+    if f(m1) * f(a) < 0:
+        b = m1
+    else:
+        a = m1
+print(f"Negative root: {m1}")
 ```
 
-<br>
+### The Positive Root (Range $[1, 1.5]$):
 
-The positive root(range [1, 1.5]):
-```
+```Python
 a = 1
 b = 1.5
-
-for n in range (1, 30):
-  m2 = (a + b)/2
-  if f(m2)*f(a)<0:
-    b = m2
-  else: 
-    a = m2
-print(m2)
-```
-
----
-
-<br>
-
-## Encapsulating
-We can encapsulate the above commands in a function that has as inputs 
-the function *f* whose zeros we want to find, the extremes A and B of the initial 
-interval and the number of interations N, where the root is the output.
-
-```
-def bisect1(f, A,B,N):
-  a = A
-  b = B
-  if f(a) *f(b)>= 0:
-    print(f'The method failed')
-    return None
-  for n in range (1, N + 1):
-    m = (a + b)/2
-    if f(a)*f(m)<0;
-      b = m
+for n in range(1, 30):
+    m2 = (a + b) / 2
+    if f(m2) * f(a) < 0:
+        b = m2
     else:
-      a = m
-  return (a + b) / 2
-
-  r1 = bissect1(f, -1,0,20)
-  r2=bisect1(f,0,2,20)
+        a = m2
+print(f"Positive root: {m2}")
 ```
 
 ---
 
-<br>
+## 📦 Encapsulating
+We can encapsulate the logic into a reusable function that takes the function $f$, the extremes $A$ and $B$ of the initial interval, and the number of iterations $N$.
 
-A procedure that has as inputs function *f* whose zeros we want to find, the extremes *A* and *B* of
-the initial interval, the maximum number of interations *N* and the tolerance ϵ of the interval that contains 
-the root. As output we have the root and the number of iterations performed.
-
-```
-def bisect2(f, A, B, Nmax, epsilon):
-  a = A
-  b = B
-  erro = 1
-  n = 0
-  while erro>epsilon and n<Nmax:
-    if f(a)*f(b)>=0:
-      print('The method failed')
+```Python
+def bisect1(f, A, B, N):
+    a, b = A, B
+    if f(a) * f(b) >= 0:
+        print('The method failed: f(a) and f(b) must have opposite signs.')
         return None
-    m = (a + b) / 2
-    if f(a)*f(m)<0:
-      b = m
-    else: 
-      a = m
-    erro = abs (a - b)
-    n = n + 1
-  return (a + b) / 2, n
+    for n in range(1, N + 1):
+        m = (a + b) / 2
+        if f(a) * f(m) < 0:
+            b = m
+        else:
+            a = m
+    return (a + b) / 2
 
-  r1 = bisect2(f, -1,0,40,10**(-10))
-  R1=r1[0]
-
-  r2 = bisect2(f,0,2,40,10**(-10))
-  R2=r2[0]
+# Usage:
+r1 = bisect1(f, -1, 0, 20)
+r2 = bisect1(f, 0, 2, 20)
 ```
 
----
+### Advanced Procedure (with Tolerance $\epsilon$)
+A procedure using the mximum number of iterations $Nmax$ and the tolerance $\epsilon$.
 
-<br>
-
-## Relationship between accuracy and number of iterations
-
-```
-def bisect3(f,A,B,epsilon):
-    a=A
-    b=B
-    n = int(np.ceil(np.log2(abs(b-a)/epsilon)))
-    for i in range(1, n+1):
-        if f(a)*f(b)>=0:
+```Python
+def bisect2(f, A, B, Nmax, epsilon):
+    a, b = A, B
+    erro = 1
+    n = 0
+    while erro > epsilon and n < Nmax:
+        if f(a) * f(b) >= 0:
             print('The method failed')
             return None
-        m=(a+b)/2
-        if f(a)*f(m)<0:
-            b=m
+        m = (a + b) / 2
+        if f(a) * f(m) < 0:
+            b = m
         else:
-            a=m
-    return (a+b)/2,n
+            a = m
+        erro = abs(a - b)
+        n = n + 1
+    return (a + b) / 2, n
+
+# Usage example:
+r1_res, n1 = bisect2(f, -1, 0, 40, 10**(-10))
 ```
 
-## Exercises
+## 📈 Accuracy vs. Number of Iterations
+The number of iterations $n$ required to reach a specific tolerance can be calculated mathematically.
 
+```Python
+import numpy as np
 
+def bisect3(f, A, B, epsilon):
+    a, b = A, B
+    n = int(np.ceil(np.log2(abs(b - a) / epsilon)))
+    for i in range(1, n + 1):
+        if f(a) * f(b) >= 0:
+            print('The method failed')
+            return None
+        m = (a + b) / 2
+        if f(a) * f(m) < 0:
+            b = m
+        else:
+            a = m
+    return (a + b) / 2, n
+```
 
-1. In the items below, graph each function to determine the real roots (if any) and their number. Then determine each one of them through the bisection method, with an interval accuracy of 10−11, determining the necessary number of iterations.
+## 📝 Exercises
 
-(i) ex+x+1=0,
+1. Graph each function to determine the real roots and solve using the bisection method (accuracy $10^{-11}$):
+* (i) $e^x + x + 1 = 0$
+* (ii) $e^{-x} + x = 0$
+* (iii) $x^3 - 9x^2 - x - 4\sin(x) + 2 = 0$
 
-(ii) e−x+x=0,
-
-(iii) x3−9x2−x−4sinx+2=0.
-
-2. Determine how many real solutions the equation sinx−cos(x2)=0 has in the interval [0,4] and how many in the interval [4,6]. Numerically determine the largest roots in each interval, with an interval accuracy of 10−7.
+2. Determine how many real solutions $\sin(x) - \cos(x^2) = 0$ has in $[0, 4]$ and $[4, 6]$. Find the largest roots with accuracy $10^{-7}$.
