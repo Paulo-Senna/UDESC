@@ -79,18 +79,23 @@ printf(x0);
 Entrada: funcao, um ponto inicial e o numero de iteracoes
 
 ```Python
-def newton_raphson3(f,a,Nmax, epsilon):
-    erro=1
-    n=0
-    x0=float(a)
-    df=diff(f(x),x)
-    Df= Lambda(x,df)
-    while erro>epsilon and n<Nmax:
-        x1=x0-f(x0)/Df(x0)
-        erro=abs(x1-x0)
-        n+=1
-        x0=x1
-    return x1,n
+def newton_raphson3(f, a, Nmax, epsilon):
+    erro = 1
+    n = 0
+    x0 = float(a)
+    
+    # Calculando a derivada automaticamente
+    df = diff(f(x), x)
+    Df = Lambda(x, df)
+    
+    # Loop de iteração
+    while erro > epsilon and n < Nmax:
+        x1 = x0 - f(x0)/Df(x0)
+        erro = abs(x1 - x0)
+        n += 1
+        x0 = x1
+        
+    return x1, n
 ```
 
 ---
