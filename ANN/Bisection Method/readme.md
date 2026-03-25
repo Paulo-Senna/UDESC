@@ -39,13 +39,13 @@ The bisection method is a root-finding algorithm that applies to any continuous 
     
 * **SymPy:** Used to simplify algebraic symbols.
   ```windows
-  python -m pip install symply
+  python -m pip install sympy
   ```
 
   <br>
 
   ```linux
-  pip install symply
+  pip install sympy
   ```
 
 <br>
